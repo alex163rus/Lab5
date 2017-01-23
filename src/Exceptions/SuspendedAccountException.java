@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab5;
+package Exceptions;
 
 /**
  *
  * @author Алексей
  */
-public class SuspendedAccountException extends BankCardException{
+public class SuspendedAccountException extends BankCardException implements java.io.Serializable{
 
     public SuspendedAccountException() {
-        super("Аккаунт является заблокированным");
+        super("Аккаунт заблокирован");
     }
 
     public SuspendedAccountException(String msg) {

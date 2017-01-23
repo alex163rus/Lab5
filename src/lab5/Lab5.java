@@ -5,8 +5,11 @@
  */
 package lab5;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import Exceptions.BankCardException;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 /**
  *
@@ -17,33 +20,54 @@ public class Lab5 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws BankCardException {
-//        throw new InsufficientFundsException();
+    public static void main(String[] args) throws BankCardException, FileNotFoundException, IOException, ClassNotFoundException {
         Bankomat bankomat = new Bankomat();
-        
-        bankomat.createClient("fio1");
-//        bankomat.createClient("fio2");
-       
-        bankomat.createCard("fio1", "1234 4545 4545 4545", "1234");
-        
-        for (int i = 0; i < 4000; i++) {
-            try {
-                System.out.println(bankomat.enterClient("1234 4545 4545 4545", "1334"));
-//                System.out.println(bankomat.enterClient("1234 4545 4545 4545", "1434"));
-//                System.out.println(bankomat.enterClient("1234 4545 4545 4545", "1534"));
-//                System.out.println(bankomat.enterClient("1234 4545 4545 4545", "1534"));
-            } catch (BankCardException ex) {
-                System.out.println(ex);
-            }
+        bankomat.createClient("Ivanov Ivan Ivanovich");
+        bankomat.createClient("Petrov Petr Petrobich");
+        bankomat.createClient("Sidorov Alex Ivanovich");
+        bankomat.createCard("Ivanov Ivan Ivanovich", "1234 1234 1234 1234", "1234");
+        bankomat.createCard("Petrov Petr Petrobich", "7777777777777777", "7777");
+        bankomat.createCard("Sidorov Alex Ivanovich", "6666666666666666", "6666");
 
-        }
-      
-//        System.out.println(bankomat.checkAmountMoney());
-//        bankomat.putMoney(1020);
-//        System.out.println(bankomat.checkAmountMoney());
-//        bankomat.
-//        bankomat.createCard("fio2", "1234 4565 4545 4545", "1234");
-//        bankomat.createCard("fio2", "1234 4545 4545 4545", "1234");
-// System.out.println(bankomat);
+//        for (int i = 0; i < 1500; i++) {//тест на блокировку карты при трех неправильных паролях. Блокируется на 3 секунды
+//            try {
+//                System.out.println(bankomat.enterClient("1234 1234 1234 1234", "1235"));
+//            } catch (BankCardException ex) {
+//                System.out.println(ex);
+//            }
+//        }
+        bankomat.enterClient("7777777777777777", "7777");
+        System.out.println(bankomat.checkAmountMoney());
+        bankomat.putMoney(10300);
+        System.out.println(bankomat.checkAmountMoney());
+        bankomat.withdrawMoney(200);
+        System.out.println(bankomat.checkAmountMoney());
+//        bankomat.withdrawMoney(20000);//проверка исключения "Недостаточно средств"
+
+        System.out.println(bankomat);//вывод всех клиентов банкомата
+        bankomat.deleteClient();//удаление текущего клиента
+        System.out.println(bankomat);//вывод всех клиентов банкомата
+//          
+//        
+        bankomat.writeClientsInSymbolStream("bankomatSymbol");//запись данных банкомата в символьный файл
+//        bankomat.readClientsOutSymbolStream("bankomatSymbol");//чтение данных банкомата из символьного файла
+//        bankomat.writeClientsInByteStream("bankomatByte");//запись данных банкомата в бинарный файл
+//        bankomat.readClientsOutByteStream("bankomatByte");//чтение данных банкомата из бинарного файла
+
+//        System.out.println(bankomat);//вывод всех клиентов банкомата
+//        
+        //запись сериализованного объекта:
+        FileOutputStream fos = new FileOutputStream("bankomat.out");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(bankomat);
+        oos.flush();
+        oos.close();
+
+        //чтение сериализованного объекта:
+//        FileInputStream fis = new FileInputStream("bankomat.out");
+//        ObjectInputStream oin = new ObjectInputStream(fis);
+//        bankomat = (Bankomat) oin.readObject();
+//        oin.close();
+//        System.out.println(bankomat);//вывод всех клиентов банкомата
     }
 }

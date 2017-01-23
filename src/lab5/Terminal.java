@@ -5,6 +5,8 @@
  */
 package lab5;
 
+import Exceptions.BankCardException;
+
 /**
  *
  * @author Алексей
@@ -14,7 +16,7 @@ public interface Terminal {
     
     public void withdrawMoney(int amount)throws BankCardException;//снять деньги
 
-    public void putMoney(int amount) throws BankCardException;//положитьденьги
+    public void putMoney(int amount) throws BankCardException;//положить деньги
 
     public void createClient(String fio) throws BankCardException;//создать клиента
 

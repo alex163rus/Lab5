@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab5;
+package Exceptions;
 
 /**
  *
  * @author Алексей
  */
-public class BankCardException extends Exception{
+public class BankCardException extends Exception implements java.io.Serializable{
     public BankCardException(String msg){
         super(msg);
     }

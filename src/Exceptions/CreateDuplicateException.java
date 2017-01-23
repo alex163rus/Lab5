@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab5;
+package Exceptions;
 
 /**
  *
  * @author Алексей
  */
-public class CreateDuplicateException extends BankCardException{
+public class CreateDuplicateException extends BankCardException implements java.io.Serializable{
 
     public CreateDuplicateException() {
         super("Дубликат карты или клиента недопустим");

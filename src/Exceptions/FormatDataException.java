@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab5;
+package Exceptions;
 
 /**
  *
  * @author Алексей
  */
-public class FormatDataException extends BankCardException{
+public class FormatDataException extends BankCardException implements java.io.Serializable{
     
     public FormatDataException() {
-        super("Неправильный формат данных");
+        super("Неверный формат данных");
     }
     public FormatDataException(String msg) {
         super(msg);

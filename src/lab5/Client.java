@@ -9,15 +9,11 @@ package lab5;
  *
  * @author Алексей
  */
-public class Client {
+public class Client implements java.io.Serializable{
     private String fio;
     private int money;
     private Card card;
-
-//    public Client(String fio, int money) {
-//        this.fio = fio;
-//        this.money = money;
-//    }
+    public static final int FIO_MAX_LEN=40;
     
     public Client(String fio) {
         this.fio = fio;
